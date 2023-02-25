@@ -8,7 +8,7 @@ public class Main {
 
         //int nums[] = {0,0,0};
 
-        System.out.println(angleClock(1, 57));
+        System.out.println(printVertically("AA BBB C DDDD EEEEE F"));
     }
 
     public static int romanToInt(String s) {
@@ -273,8 +273,29 @@ public class Main {
         }
 
         return Integer.parseInt(outStr);
+    }
 
 
+    public static List<String> printVertically(String s) {
+        List<String> out = new ArrayList<>();
+        List<String> helper = List.of(s.split(" "));
+        String longestString = helper.stream().max(Comparator.comparingInt(String::length)).get();
+
+        String toOutList = "";
+        for (int i = 0; i < longestString.length(); i++) {
+            for (int j = 0; j < helper.size(); j++) {
+                if (i > helper.get(j).length() - 1) {
+                    toOutList += " ";
+                } else {
+                    toOutList += helper.get(j).charAt(i);
+                }
+            }
+            System.out.println(toOutList);
+            out.add(toOutList.stripTrailing());
+            toOutList = "";
+        }
+
+        return out;
     }
 
 }

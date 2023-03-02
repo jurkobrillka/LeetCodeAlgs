@@ -8,7 +8,7 @@ public class Main {
 
         //int nums[] = {0,0,0};
 
-        System.out.println(maxArea(nums));
+        System.out.println(letterCombinations("23"));
     }
 
     public static int romanToInt(String s) {
@@ -345,6 +345,56 @@ public class Main {
 
         }
         return  out;
+    }
+
+
+    public static List<String> letterCombinations(String digits) {
+        List<String> out = new ArrayList<>();
+        List<String> helperOut = new ArrayList<>();
+
+        int dgs = Integer.parseInt(digits);
+        int indexHelp = 0;
+        String letters = "";
+        int loopIndex = 0;
+        boolean sizeHelp = true;
+        helperOut.add("XXX");
+        helperOut.add("XXX");
+        for (char i = 'a'; i <= 'z'; i++) {
+            letters+=String.valueOf(i);
+            indexHelp++;
+            if(indexHelp==3){
+                if ((helperOut.size() == 5 || helperOut.size() == 7) && sizeHelp){
+                    indexHelp--;
+                    sizeHelp = false;
+                }
+                else {
+                    sizeHelp = true;
+                    indexHelp = 0;
+                    helperOut.add(letters);
+                    letters = "";
+                }
+
+            }
+        }
+
+        String outStr = "";
+/*
+        for (int i = 0; i <digits.length() ; i++) {
+            for (int j = 0; j <helperOut.get(Integer.parseInt(String.valueOf(digits.charAt(i)))).length() ; j++) {
+                outStr+=helperOut.get(Integer.parseInt(String.valueOf(digits.charAt(i+1)))).charAt(j);
+
+                out.add(outStr);
+                outStr="";
+                outStr+=helperOut.get(Integer.parseInt(String.valueOf(digits.charAt(i)))).charAt(i);
+            }
+        }
+*/
+
+        //TODO use recursion
+        for (String str: out){
+            System.out.println(str);
+        }
+        return out;
     }
 
 }

@@ -398,6 +398,25 @@ public class Main {
         return out;
     }
 
+
+    public static boolean isValid(String s){
+        Stack<Character> stack = new Stack<>();
+        HashMap<Character, Character> bracketMap = new HashMap<>();
+        bracketMap.put(')', '(');
+        bracketMap.put('}', '{');
+        bracketMap.put(']', '[');
+        for (char c : s.toCharArray()) {
+            if (bracketMap.containsValue(c)) {
+                stack.push(c);
+            } else if (bracketMap.containsKey(c)) {
+                if (stack.isEmpty() || bracketMap.get(c) != stack.pop()) {
+                    return false;
+                }
+            }
+        }
+        return stack.isEmpty();
+    }
+
 }
 
 
